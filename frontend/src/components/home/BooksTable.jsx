@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineQrcode } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import MembersCount from "../MembersCount";
+import QRCode from "qrcode.react";
 
 const BooksTable = ({ books }) => {
+  const generateQRCode = (bookId) => {
+    // Generate QR code URL using the book ID
+    const newURL = `http://localhost:5173/books/details/${bookId}`;
+    const qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?data=${newURL}&size=150x150`;
+
+    // Open QR code in a new tab
+    window.open(qrCodeURL);
+  };
+
   return (
     <>
       <MembersCount totalCount={books.length} /> {}
@@ -42,7 +52,7 @@ const BooksTable = ({ books }) => {
               <td className="border border-slate-600 rounded-md text-center">
                 {book.fatherName}
               </td>
-              <td className="border border-slate-600 rounded-md max-md:hidden text-center">
+              <td className="border border-slate-600 rounded-md text-center">
                 {book.email}
               </td>
               <td className="border border-slate-600 rounded-md max-md:hidden text-center">
@@ -61,9 +71,13 @@ const BooksTable = ({ books }) => {
                   <AiOutlineEdit className="text-yellow-600 text-2xl" />
                 </Link>
 
-                <Link to={`/books/delete/${book._id}`}>
-                  <MdOutlineDelete className="text-red-600 text-2xl" />
-                </Link>
+                <MdOutlineDelete className="text-red-600 text-2xl" />
+
+                {/* QR Code Icon */}
+                <AiOutlineQrcode
+                  className="text-blue-600 text-2xl cursor-pointer"
+                  onClick={() => generateQRCode(book._id)}
+                />
               </td>
             </tr>
           ))}
