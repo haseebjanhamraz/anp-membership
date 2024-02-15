@@ -14,7 +14,7 @@ const BookSingleCard = ({ book }) => {
   return (
     <div
       key={book._id}
-      className="content-center border-2 border-gray-500 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl"
+      className="content-center flex flex-col w-[400px] justify-center items-center border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
     >
       <img
         // src={`http://localhost:8080/${book.imagePath}`}
@@ -23,10 +23,14 @@ const BookSingleCard = ({ book }) => {
             ? `http://localhost:8080/${book.imagePath}`
             : "placeholder.webp"
         }
-        height="100px"
-        width="300px"
+        className="w-auto h-[300px] rounded-lg "
         alt=""
       />
+      <div className=" bg-yellow-500 w-30 text-center rounded-lg m-4 p-2">
+        <h1 className="text-red-600 text-2xl font-bold uppercase">
+          {book.name}
+        </h1>
+      </div>
       <div className="flex justify-start items-center gap-x-2 ">
         <PiBookOpenTextLight className="text-red-300 text-2xl " />
         <h2 className="my-1 ">{book._id}</h2>

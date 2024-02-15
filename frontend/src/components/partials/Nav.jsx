@@ -30,7 +30,7 @@ export default function Example() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <h4 className="text-white text-lg">
-                    Baacha Khan Research Center
+                    ANP Membership Database 1.0
                   </h4>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
