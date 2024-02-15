@@ -14,7 +14,7 @@ const BookSingleCard = ({ book }) => {
   return (
     <div
       key={book._id}
-      className="content-center flex flex-col w-[400px] justify-center items-center border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
+      className="content-center flex flex-col w-[400px] border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
     >
       <img
         // src={`http://localhost:8080/${book.imagePath}`}
@@ -26,8 +26,8 @@ const BookSingleCard = ({ book }) => {
         className="w-auto h-[300px] rounded-lg "
         alt=""
       />
-      <div className=" bg-yellow-500 w-30 text-center rounded-lg m-4 p-2">
-        <h1 className="text-red-600 text-2xl font-bold uppercase">
+      <div className=" bg-yellow-200 w-30 text-center rounded-lg m-4 p-2">
+        <h1 className="text-red-600 px-2 text-2xl font-bold uppercase">
           {book.name}
         </h1>
       </div>
@@ -43,8 +43,7 @@ const BookSingleCard = ({ book }) => {
         <IoLanguage className="text-red-300 text-2xl " />
         <h2 className="my-1 ">{book.address}</h2>
       </div>
-
-      <h2 className="uppercase absoulte top-1 right-2 px-4 py-1 w-[200px] mt-3 bg-red-300 rounded-lg">
+      <h2 className="text-white uppercase absoulte top-1 right-2 px-4 py-1 w-auto mt-3 bg-red-600 rounded-lg">
         Serial#: {book.serial}
       </h2>
       <div className="flex justify-between items-center gap-x-2 mt-4 p-4 ">

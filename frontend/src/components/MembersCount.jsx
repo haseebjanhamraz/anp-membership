@@ -8,13 +8,6 @@
 
 import { CheckIcon } from "@heroicons/react/20/solid";
 
-const includedFeatures = [
-  "Private forum access",
-  "Member resources",
-  "Entry to annual conference",
-  "Official member t-shirt",
-];
-
 export default function MembersCount({ totalCount }) {
   return (
     <div className="bg-white py-12 sm:py-12">
@@ -31,7 +24,7 @@ export default function MembersCount({ totalCount }) {
                     {totalCount}
                   </span>
                   <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">
-                    Members
+                    Member(s)
                   </span>
                 </p>
               </div>
