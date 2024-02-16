@@ -64,7 +64,7 @@ const BooksTable = ({ books }) => {
 
   return (
     <>
-      <MembersCount totalCount={filteredItems.length} />
+      <MembersCount totalCount={books.length} />
       <h1 className="text-4xl m-2 py-2">Membership Detailed Table</h1>
       <div className="mb-4">
         <input
@@ -82,9 +82,11 @@ const BooksTable = ({ books }) => {
           onChange={handleDistrictChange}
           className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
         >
-          <option value="">All Districts</option>
-          {districts.map((district) => (
-            <option key={district} value={district}>
+          <option key="" value="">
+            All Districts
+          </option>
+          {districts.map((district, index) => (
+            <option key={index} value={district}>
               {district}
             </option>
           ))}
