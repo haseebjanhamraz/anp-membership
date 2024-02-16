@@ -12,7 +12,7 @@ import Nav from "../components/partials/Nav";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState("card");
+  const [showType, setShowType] = useState("table");
   useEffect(() => {
     setLoading(true);
     axios

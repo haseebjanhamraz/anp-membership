@@ -31,6 +31,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       !req.body.serial ||
       !req.body.name ||
       !req.body.fatherName ||
+      !req.body.district ||
       !req.body.address ||
       !req.body.contactNumber ||
       !req.body.email ||
@@ -44,6 +45,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       serial,
       name,
       fatherName,
+      district,
       address,
       contactNumber,
       email,
@@ -56,6 +58,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       serial,
       name,
       fatherName,
+      district,
       address,
       contactNumber,
       email,
@@ -81,6 +84,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       !req.body.serial ||
       !req.body.name ||
       !req.body.fatherName ||
+      !req.body.district ||
       !req.body.address ||
       !req.body.contactNumber ||
       !req.body.email ||
@@ -94,6 +98,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       serial,
       name,
       fatherName,
+      district,
       address,
       contactNumber,
       email,
@@ -120,6 +125,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
         serial,
         name,
         fatherName,
+        district,
         address,
         contactNumber,
         email,
@@ -130,12 +136,12 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     );
 
     if (!result) {
-      return res.status(404).json({ message: "Book not found" });
+      return res.status(404).json({ message: "Member not found" });
     }
 
     return res
       .status(200)
-      .json({ message: "Book updated successfully", book: result });
+      .json({ message: "Member updated successfully", book: result });
   } catch (error) {
     console.error(error.message);
     res.status(500).send({ message: error.message });
@@ -162,6 +168,26 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     const book = await Book.findById(id);
     return res.status(200).json(book);
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+// Get Route for searching books
+router.get("/search", async (req, res) => {
+  try {
+    const { query } = req.query;
+    const books = await Book.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } }, // Search by name ignoring case
+        { district: { $regex: query, $options: "i" } }, // Search by district ignoring case
+      ],
+    });
+    return res.status(200).json({
+      count: books.length,
+      data: books,
+    });
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });
