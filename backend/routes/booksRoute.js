@@ -5,7 +5,6 @@ import * as path from "path";
 const router = express.Router();
 
 // Configure multer for file uploads
-// Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/"); // Save uploaded files to the 'uploads' directory
