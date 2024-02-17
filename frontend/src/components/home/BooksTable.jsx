@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineEdit, AiOutlineQrcode } from "react-icons/ai";
-import { BsInfoCircle } from "react-icons/bs";
-import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
+import SearchInput from "../SearchInput";
+import ItemsPerPageDropdown from "../ItemsPerPageDropdown";
+import DistrictDropdown from "../DistrictDropdown";
+import TableRow from "../TableRow";
 import MembersCount from "../MembersCount";
 
 const BooksTable = ({ books }) => {
@@ -19,7 +19,9 @@ const BooksTable = ({ books }) => {
   };
 
   const handleItemsPerPageChange = (event) => {
-    setItemsPerPage(Number(event.target.value));
+    const value = parseInt(event.target.value);
+    setItemsPerPage(value);
+    setCurrentPage(1); // Reset page number when items per page changes
   };
 
   const handleSearchChange = (event) => {
@@ -65,121 +67,85 @@ const BooksTable = ({ books }) => {
   return (
     <>
       <MembersCount totalCount={books.length} />
-      <h1 className="text-4xl m-2 py-2">Membership Detailed Table</h1>
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
-        />
-      </div>
-      {/* Step 2: Add dropdown for district filter */}
-      <div className="mb-4">
-        <select
-          value={selectedDistrict}
-          onChange={handleDistrictChange}
-          className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
-        >
-          <option key="" value="">
-            All Districts
-          </option>
-          {districts.map((district, index) => (
-            <option key={index} value={district}>
-              {district}
-            </option>
-          ))}
-        </select>
-      </div>
-      <table className="w-full border-separate border-spacing-2">
-        <thead>
-          <tr>
-            <th className="border border-slate-600 rounded-md">No</th>
-            <th className="border border-slate-600 rounded-md">Ref#</th>
-            <th className="border border-slate-600 rounded-md">Name</th>
-            <th className="border border-slate-600 rounded-md">Father Name</th>
-            <th className="border border-slate-600 rounded-md">Email</th>
-            <th className="border border-slate-600 rounded-md max-md:hidden">
-              Contact#
-            </th>
-            <th className="border border-slate-600 rounded-md max-md:hidden">
-              District
-            </th>
-            <th className="border border-slate-600 rounded-md">Operations</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredItems.map((book, index) => (
-            <tr key={book._id} className="h-8">
-              <td className="border border-slate-600 rounded-md text-center">
-                {index + 1}
-              </td>
-              <td className="border border-slate-600 rounded-md text-center">
-                {book.serial}
-              </td>
-              <td className="border border-slate-600 rounded-md text-center">
-                {book.name}
-              </td>
-              <td className="border border-slate-600 rounded-md text-center">
-                {book.fatherName}
-              </td>
-              <td className="border border-slate-600 rounded-md text-center">
-                {book.email}
-              </td>
-              <td className="border border-slate-600 rounded-md max-md:hidden text-center">
-                {book.contactNumber}
-              </td>
-              <td className="border border-slate-600 rounded-md max-md:hidden text-center">
-                {book.district}
-              </td>
-              <td className="flex justify-center gap-x-4">
-                <Link to={`/books/details/${book._id}`}>
-                  <BsInfoCircle className="text-green-800 text-2xl" />
-                </Link>
-                <Link to={`/books/edit/${book._id}`}>
-                  <AiOutlineEdit className="text-yellow-600 text-2xl" />
-                </Link>
-                <MdOutlineDelete className="text-red-600 text-2xl" />
-                <AiOutlineQrcode
-                  className="text-blue-600 text-2xl cursor-pointer"
-                  onClick={() => generateQRCode(book._id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flex justify-between items-center mt-4">
-        <div>
-          <select
-            value={itemsPerPage}
-            onChange={handleItemsPerPageChange}
-            className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
-          >
-            <option value={10}>10 per page</option>
-            <option value={30}>30 per page</option>
-            <option value={50}>50 per page</option>
-          </select>
+      <div className="container md:container md:mx-auto">
+        <div className="flex justify-around align-middle mt-4">
+          <div>
+            <h4>Search by name or author</h4>
+            <SearchInput value={searchQuery} onChange={handleSearchChange} />
+          </div>
+          <div>
+            <DistrictDropdown
+              districts={districts}
+              value={selectedDistrict}
+              onChange={handleDistrictChange}
+            />
+          </div>
         </div>
-        <div>
-          <ul className="flex">
-            {pageNumbers.map((number) => (
-              <li key={number}>
-                <button
-                  className={`px-3 py-1 mx-1 border border-gray-300 rounded-md focus:outline-none ${
-                    currentPage === number ? "bg-blue-500 text-white" : ""
-                  }`}
-                  onClick={() => handlePageChange(number)}
-                >
-                  {number}
-                </button>
-              </li>
+        <h1
+          className={`text-xl text-gray-500 m-2 py-2 ${
+            selectedDistrict || searchQuery ? "" : "hidden"
+          }`}
+        >
+          {selectedDistrict} has total of{" "}
+          <span className="font-bold">{filteredItems.length}</span> memberships
+        </h1>
+        <h1 className="text-4xl m-2 py-2">Membership Detailed Table</h1>
+        <table className="w-full border-separate border-spacing-2">
+          <thead>
+            <tr>
+              <th className="w-10 border border-slate-600 rounded-md">No</th>
+              <th className="w-10 border border-slate-600 rounded-md">Ref#</th>
+              <th className="border border-slate-600 rounded-md">Name</th>
+              <th className="border border-slate-600 rounded-md">
+                Father Name
+              </th>
+              <th className="w-10 border border-slate-600 rounded-md">
+                District
+              </th>
+              <th className="border border-slate-600 rounded-md max-md:hidden">
+                Contact#
+              </th>
+              <th className="w-10">Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredItems.map((book, index) => (
+              <TableRow
+                key={book._id}
+                book={book}
+                index={index}
+                generateQRCode={generateQRCode}
+              />
             ))}
-          </ul>
+          </tbody>
+        </table>
+        <div className="flex justify-between items-center mt-4">
+          <div>
+            <ItemsPerPageDropdown
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+            />
+          </div>
+          <div>
+            <ul className="flex">
+              {pageNumbers.map((number) => (
+                <li key={number}>
+                  <button
+                    className={`px-3 py-1 mx-1 border border-gray-300 rounded-md focus:outline-none ${
+                      currentPage === number ? "bg-blue-500 text-white" : ""
+                    }`}
+                    onClick={() => handlePageChange(number)}
+                  >
+                    {number}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </>
   );
 };
+
 export default BooksTable;

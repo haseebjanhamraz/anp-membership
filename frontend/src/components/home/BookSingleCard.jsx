@@ -14,7 +14,7 @@ const BookSingleCard = ({ book }) => {
   return (
     <div
       key={book._id}
-      className="content-center flex flex-col w-[400px] border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
+      className="content-center flex flex-col w-auto border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
     >
       <img
         // src={`http://localhost:8080/${book.imagePath}`}
