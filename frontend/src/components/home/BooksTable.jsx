@@ -70,10 +70,11 @@ const BooksTable = ({ books }) => {
       <div className="container md:container md:mx-auto">
         <div className="flex justify-around align-middle mt-4">
           <div>
-            <h4>Search by name or author</h4>
+            <h4>Search by name or father name</h4>
             <SearchInput value={searchQuery} onChange={handleSearchChange} />
           </div>
           <div>
+            <h4>Search by district</h4>
             <DistrictDropdown
               districts={districts}
               value={selectedDistrict}
@@ -81,14 +82,20 @@ const BooksTable = ({ books }) => {
             />
           </div>
         </div>
-        <h1
-          className={`text-xl text-gray-500 m-2 py-2 ${
-            selectedDistrict || searchQuery ? "" : "hidden"
-          }`}
-        >
-          {selectedDistrict} has total of{" "}
-          <span className="font-bold">{filteredItems.length}</span> memberships
-        </h1>
+        <div className="bg-yellow-400 rounded-lg">
+          <h1
+            className={`text-2xl m-2 py-2 ${
+              selectedDistrict || searchQuery ? "" : "hidden"
+            }`}
+          >
+            <span className="font-bold text-red-500 uppercase">
+              {selectedDistrict}{" "}
+            </span>{" "}
+            has total of{" "}
+            <span className="font-bold">{filteredItems.length}</span>{" "}
+            memberships
+          </h1>
+        </div>
         <h1 className="text-4xl m-2 py-2">Membership Detailed Table</h1>
         <table className="w-full border-separate border-spacing-2">
           <thead>
