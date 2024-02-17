@@ -10,8 +10,6 @@ const BooksTable = ({ books }) => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
-
-  // Step 1: Define unique districts
   const districts = [...new Set(books.map((book) => book.district))];
 
   const handlePageChange = (pageNumber) => {
