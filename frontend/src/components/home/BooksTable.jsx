@@ -66,7 +66,7 @@ const BooksTable = ({ books }) => {
 
   return (
     <>
-      <MembersCount totalCount={books.length} />
+      <MembersCount totalCount={books.length} districts={districts} />
       <div className="container md:container md:mx-auto">
         <div className="flex justify-around align-middle mt-4">
           <div>

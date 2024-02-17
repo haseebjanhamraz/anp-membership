@@ -32,7 +32,8 @@ const Home = () => {
     <>
       <Nav />
       <div className="p-4">
-        <div className="flex justify-center items-center gap-x-4 ">
+        <div className="flex justify-end space-x-4 mx-5 items-center gap-x-4 ">
+          <h4>View type:</h4>
           <button
             className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg "
             onClick={() => setShowType("table")}
@@ -45,11 +46,11 @@ const Home = () => {
           >
             Card
           </button>
-        </div>
-        <div className="flex justify-between items-center ">
-          <Link to="/books/create">
-            <MdOutlineAddBox className="text-sky-800 text-4xl" />
-          </Link>
+          <div className="flex justify-between items-center ">
+            <Link to="/books/create">
+              <MdOutlineAddBox className="text-sky-800 text-4xl" />
+            </Link>
+          </div>
         </div>
         {loading ? (
           <Spinner />
