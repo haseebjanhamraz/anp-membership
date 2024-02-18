@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
-
 import express from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
+import authRoute from "./routes/authRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -26,6 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/books", booksRoute);
+app.use("/auth", authRoute);
 
 mongoose
   .connect(mongoDBURL)

@@ -3,6 +3,7 @@ import { Book } from "../models/bookModel.js";
 import multer from "multer";
 import * as path from "path";
 const router = express.Router();
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -23,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST Route for creating a new book with image upload
-router.post("/", upload.single("image"), async (req, res) => {
+router.post("/", verifyToken, upload.single("image"), async (req, res) => {
   try {
     // Check if all required fields are provided
     if (
@@ -75,7 +76,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   }
 });
 
-router.put("/:id", upload.single("image"), async (req, res) => {
+router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
     // Check if all required fields are provided
@@ -162,7 +163,7 @@ router.get("/", async (req, res) => {
 });
 
 // Route for one book from the database by ID
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyToken, async (req, res) => {
   try {
     const { id } = req.params;
     const book = await Book.findById(id);
