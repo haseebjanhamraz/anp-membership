@@ -43,5 +43,11 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+router.post("/logout", (req, res) => {
+  // Clear the token from the client-side storage (e.g., local storage or cookies)
+  // This could also involve revoking the token from a blacklist or database, if needed
+  res.clearCookie("jwtToken"); // Example: Clear JWT token from cookies
+  res.status(200).json({ message: "User logged out successfully" });
+});
 
 export default router;
