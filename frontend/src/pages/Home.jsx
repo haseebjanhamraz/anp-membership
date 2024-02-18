@@ -8,6 +8,7 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import BooksCard from "../components/home/BooksCard";
 import BooksTable from "../components/home/BooksTable";
 import Nav from "../components/partials/Nav";
+import LogoutButton from "../components/LogoutButton";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -30,6 +31,7 @@ const Home = () => {
   // Get all books from the server.
   return (
     <>
+      <LogoutButton />
       <Nav />
       <div className="p-4">
         <div className="flex justify-end space-x-4 mx-5 items-center gap-x-4 ">

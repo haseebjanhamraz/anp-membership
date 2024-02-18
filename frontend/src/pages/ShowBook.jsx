@@ -1,3 +1,5 @@
+// pages/ShowBook.jsx
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -16,7 +18,11 @@ const ShowBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:8080/books/${id}`)
+      .get(`http://localhost:8080/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
+        },
+      })
       .then((res) => {
         setBook(res.data);
         setLoading(false);
@@ -49,11 +55,11 @@ const ShowBook = () => {
                 />
               </div>
               <div className="flex justify-center space-x-3">
-                <span class="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-lg font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
+                <span className="inline-flex items-center rounded-md bg-yellow-50 px-2 py-1 text-lg font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">
                   Serial# {book.serial}
                 </span>
 
-                <span class="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-lg font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
+                <span className="inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-lg font-medium text-indigo-700 ring-1 ring-inset ring-indigo-600/20">
                   {book.district}
                 </span>
               </div>
