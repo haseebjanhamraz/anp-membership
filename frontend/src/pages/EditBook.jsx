@@ -24,7 +24,11 @@ const EditBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:8080/books/${id}`)
+      .get(`http://localhost:8080/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
+        },
+      })
       .then((res) => {
         setSerial(res.data.serial);
         setName(res.data.name);
@@ -57,7 +61,11 @@ const EditBook = () => {
     data.append("image", imagePath); // Append the selected file to FormData
 
     axios
-      .put(`http://localhost:8080/books/${id}`, data)
+      .put(`http://localhost:8080/books/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
+        },
+      })
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Member Edited Successfully", { variant: "success" });

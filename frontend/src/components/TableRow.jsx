@@ -33,7 +33,10 @@ const TableRow = ({ book, index, generateQRCode }) => {
         <Link to={`/books/edit/${book._id}`}>
           <AiOutlineEdit className="text-yellow-600 text-2xl" />
         </Link>
-        <MdOutlineDelete className="text-red-600 text-2xl" />
+
+        <Link to={`/books/delete/${book._id}`}>
+          <MdOutlineDelete className="text-red-600 text-2xl" />
+        </Link>
         <AiOutlineQrcode
           className="text-blue-600 text-2xl cursor-pointer"
           onClick={() => generateQRCode(book._id)}

@@ -40,6 +40,7 @@ const CreateBook = () => {
     axios
       .post("http://localhost:8080/books", formData, {
         headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",
         },
       })

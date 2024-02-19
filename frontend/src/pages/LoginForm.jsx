@@ -1,8 +1,11 @@
 // LoginForm.jsx
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -12,7 +15,6 @@ const LoginForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -23,6 +25,8 @@ const LoginForm = () => {
       const { token } = response.data;
       localStorage.setItem("token", token);
       console.log("Login successful:", response.data);
+      const { from } = location.state || { from: { pathname: "/" } };
+      navigate(from);
     } catch (error) {
       console.error("Login failed:", error.response.data);
       // Show error message to the user
