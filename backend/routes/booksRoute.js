@@ -26,7 +26,6 @@ const upload = multer({ storage });
 // POST Route for creating a new book with image upload
 router.post("/", verifyToken, upload.single("image"), async (req, res) => {
   try {
-    // Check if all required fields are provided
     if (
       !req.body.serial ||
       !req.body.name ||
@@ -79,7 +78,6 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
 router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
-    // Check if all required fields are provided
     if (
       !req.body.serial ||
       !req.body.name ||

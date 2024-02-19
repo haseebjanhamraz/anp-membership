@@ -1,3 +1,5 @@
+//models/bookModel.js
+
 import mongoose from "mongoose";
 
 const booksSchema = mongoose.Schema(
