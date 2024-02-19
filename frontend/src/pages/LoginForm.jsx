@@ -19,13 +19,10 @@ const LoginForm = () => {
       const response = await axios.post(
         "http://localhost:8080/auth/login",
         formData
-      ); // Update the URL here
-      const { token } = response.data; // Extract the token from the response
-      // Store the token in local storage
+      );
+      const { token } = response.data;
       localStorage.setItem("token", token);
       console.log("Login successful:", response.data);
-      // Store token in local storage or cookies
-      // Redirect to dashboard or protected route
     } catch (error) {
       console.error("Login failed:", error.response.data);
       // Show error message to the user
