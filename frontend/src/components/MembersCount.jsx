@@ -1,11 +1,4 @@
-// import React from "react";
-
-// const MembersCount = ({ totalCount }) => {
-//   return <div className="mb-4">Total Members: {totalCount}</div>;
-// };
-
-// export default MembersCount;
-
+// components/ MembersCount.jsx
 import { CheckIcon } from "@heroicons/react/20/solid";
 
 export default function MembersCount({ totalCount, districts }) {
