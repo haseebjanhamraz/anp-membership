@@ -103,9 +103,11 @@ const BooksTable = ({ books }) => {
               <th className="border border-slate-600 rounded-md">
                 Father Name
               </th>
+              <th className="border border-slate-600 rounded-md">CNIC#</th>
               <th className="w-10 border border-slate-600 rounded-md">
                 District
               </th>
+              <th className="border border-slate-600 rounded-md">Address</th>
               <th className="border border-slate-600 rounded-md max-md:hidden">
                 Contact#
               </th>

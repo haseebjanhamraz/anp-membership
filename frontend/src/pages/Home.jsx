@@ -34,10 +34,10 @@ const Home = () => {
   return (
     <>
       <Nav />
-      <MembersCount totalCount={books.length} districts={districts} />
       <div className="p-4">
+        <MembersCount totalCount={books.length} districts={districts} />
         {AuthCheck() ? (
-          <div className="flex justify-end space-x-4 mx-5 items-center gap-x-4 ">
+          <div className="flex justify-start space-x-4 m-10 bg-gray-50 p-10 rounded-lg shadow-xl mx-5 items-center gap-x-4 ">
             <h4>View type:</h4>
             <button
               className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg "

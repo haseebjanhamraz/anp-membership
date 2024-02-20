@@ -21,7 +21,13 @@ const TableRow = ({ book, index, generateQRCode }) => {
         {book.fatherName}
       </td>
       <td className="border border-slate-600 rounded-md text-center">
+        {book.nicNumber}
+      </td>
+      <td className="border border-slate-600 rounded-md text-center">
         {book.district}
+      </td>
+      <td className="border border-slate-600 rounded-md max-md:hidden text-center">
+        {book.address}
       </td>
       <td className="border border-slate-600 rounded-md max-md:hidden text-center">
         {book.contactNumber}
