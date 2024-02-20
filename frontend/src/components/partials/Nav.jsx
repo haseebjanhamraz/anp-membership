@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 export default function Example() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-red-800">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -66,7 +66,7 @@ export default function Example() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src="placeholder.webp"
                           alt=""
                         />
                       </Menu.Button>
@@ -116,7 +116,7 @@ export default function Example() {
                 ) : (
                   <a
                     href="/login"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-yellow-600 bg-gray-700 hover:bg-gray-700"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-red-500 hover:text-white bg-gray-300 hover:bg-gray-500"
                   >
                     Login
                   </a>
