@@ -17,11 +17,11 @@ const App = () => {
           <Route element={<CreateBook />} path="/books/create" />
           <Route element={<EditBook />} path="/books/edit/:id" />
           <Route element={<DeleteBook />} path="/books/delete/:id" />
+          <Route element={<ShowBook />} path="/books/details/:id" />
         </Route>
         <Route element={<Home />} path="/" exact />
         <Route element={<Login />} path="/login" />
         <Route element={<RegistrationPage />} path="/register" />
-        <Route element={<ShowBook />} path="/books/details/:id" />
       </Routes>
     </Router>
   );

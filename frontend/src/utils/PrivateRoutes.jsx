@@ -8,12 +8,9 @@ const PrivateRoutes = () => {
   const isAuthenticated = !!localStorage.getItem("token");
 
   if (!isAuthenticated) {
-    // Display notistack warning
     enqueueSnackbar("You need to be logged in", { variant: "warning" });
-    // Redirect to login page with state indicating intended location
     return <Navigate to="/login" state={{ from: window.location.pathname }} />;
   }
-
   return <Outlet />;
 };
 

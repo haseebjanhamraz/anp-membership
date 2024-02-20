@@ -70,6 +70,8 @@ const CreateBook = () => {
               type="number"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={serial}
+              maxLength={6}
+              placeholder="Serial from copy: 000123"
               onChange={(e) => setSerial(e.target.value)}
             />
           </div>
@@ -79,6 +81,8 @@ const CreateBook = () => {
               type="text"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={name}
+              maxlength={25}
+              placeholder="Name"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -88,6 +92,8 @@ const CreateBook = () => {
               type="text"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={fatherName}
+              maxlength={25}
+              placeholder="Father Name"
               onChange={(e) => setFatherName(e.target.value)}
             />
           </div>
@@ -144,6 +150,8 @@ const CreateBook = () => {
               type="text"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={address}
+              placeholder="Enter permanent address"
+              maxlength={80}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -155,6 +163,8 @@ const CreateBook = () => {
               type="number"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={contactNumber}
+              placeholder="03335806268"
+              maxlength={11}
               onChange={(e) => setContactNumber(e.target.value)}
             />
             <div className="my-4 ">
@@ -165,6 +175,8 @@ const CreateBook = () => {
                 type="text"
                 className="border-2 border-grey-500 px-4 py-2 w-full"
                 value={email}
+                placeholder="example@gmail.com"
+                maxlength={30}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -174,6 +186,8 @@ const CreateBook = () => {
                 type="number"
                 className="border-2 border-grey-500 px-4 py-2 w-full"
                 value={nicNumber}
+                placeholder="1710111122332"
+                maxlength={13}
                 onChange={(e) => setNicNumber(e.target.value)}
               />
             </div>

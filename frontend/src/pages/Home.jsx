@@ -7,7 +7,6 @@ import { MdOutlineAddBox } from "react-icons/md";
 import BooksCard from "../components/home/BooksCard";
 import BooksTable from "../components/home/BooksTable";
 import Nav from "../components/partials/Nav";
-import LogoutButton from "../components/LogoutButton";
 
 import { useSnackbar } from "notistack";
 
@@ -33,7 +32,6 @@ const Home = () => {
   return (
     <>
       <Nav />
-      <LogoutButton />
       <div className="p-4">
         <div className="flex justify-end space-x-4 mx-5 items-center gap-x-4 ">
           <h4>View type:</h4>

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import Nav from "../components/partials/Nav";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -35,6 +36,7 @@ const LoginForm = () => {
 
   return (
     <>
+      <Nav />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -54,7 +56,7 @@ const LoginForm = () => {
                 htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                username address
+                Username
               </label>
               <div className="mt-2">
                 <input
