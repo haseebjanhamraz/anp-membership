@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthCheck from "../../utils/AuthCheck";
-
+import Logout from "../../utils/Logout";
 const navigation = [
   { name: "Home", href: "/", current: true },
   { name: "Add New", href: "/books/create" },
@@ -102,6 +102,9 @@ export default function Example() {
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
+                              onClick={() => {
+                                Logout();
+                              }}
                             >
                               Logout
                             </a>
