@@ -8,13 +8,14 @@ import BooksCard from "../components/home/BooksCard";
 import BooksTable from "../components/home/BooksTable";
 import Nav from "../components/partials/Nav";
 import AuthCheck from "../utils/AuthCheck";
-
-import { useSnackbar } from "notistack";
+import MembersCount from "../components/MembersCount";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
+  const districts = [...new Set(books.map((book) => book.district))];
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("card");
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -33,6 +34,7 @@ const Home = () => {
   return (
     <>
       <Nav />
+      <MembersCount totalCount={books.length} districts={districts} />
       <div className="p-4">
         {AuthCheck() ? (
           <div className="flex justify-end space-x-4 mx-5 items-center gap-x-4 ">

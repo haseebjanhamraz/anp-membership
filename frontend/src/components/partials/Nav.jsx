@@ -116,7 +116,7 @@ export default function Example() {
                 ) : (
                   <a
                     href="/login"
-                    className="rounded-md px-3 py-2 text-sm font-medium text-white bg-gray-900 hover:bg-gray-700"
+                    className="rounded-md px-3 py-2 text-sm font-medium text-yellow-600 bg-gray-700 hover:bg-gray-700"
                   >
                     Login
                   </a>

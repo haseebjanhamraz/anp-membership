@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchInput from "../SearchInput";
 import ItemsPerPageDropdown from "../ItemsPerPageDropdown";
 import DistrictDropdown from "../DistrictDropdown";
-import TableRow from "../TableRow";
+import PublicTableRow from "../PublicTableRow";
 import MembersCount from "../MembersCount";
 
 const BooksTable = ({ books }) => {
@@ -64,6 +64,7 @@ const BooksTable = ({ books }) => {
 
   return (
     <>
+      <MembersCount totalCount={books.length} districts={districts} />
       <div className="container md:container md:mx-auto">
         <div className="flex justify-around align-middle mt-4">
           <div>
@@ -106,15 +107,11 @@ const BooksTable = ({ books }) => {
               <th className="w-10 border border-slate-600 rounded-md">
                 District
               </th>
-              <th className="border border-slate-600 rounded-md max-md:hidden">
-                Contact#
-              </th>
-              <th className="w-10">Operations</th>
             </tr>
           </thead>
           <tbody>
             {filteredItems.map((book, index) => (
-              <TableRow
+              <PublicTableRow
                 key={book._id}
                 book={book}
                 index={index}
