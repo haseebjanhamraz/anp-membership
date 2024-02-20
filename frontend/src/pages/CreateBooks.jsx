@@ -16,9 +16,14 @@ const CreateBook = () => {
   const [email, setEmail] = useState("");
   const [nicNumber, setNicNumber] = useState("");
   const [image, setImage] = useState(null); // Add state for the image
+  const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked); // Toggle the value of isChecked when the checkbox is clicked
+  };
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]); // Set the selected image file to the state
@@ -34,6 +39,7 @@ const CreateBook = () => {
     formData.append("contactNumber", contactNumber);
     formData.append("email", email);
     formData.append("nicNumber", nicNumber);
+    formData.append("status", isChecked);
     formData.append("image", image);
 
     setLoading(true);
@@ -81,7 +87,7 @@ const CreateBook = () => {
               type="text"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={name}
-              maxlength={25}
+              maxLength={25}
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
             />
@@ -92,7 +98,7 @@ const CreateBook = () => {
               type="text"
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={fatherName}
-              maxlength={25}
+              maxLength={25}
               placeholder="Father Name"
               onChange={(e) => setFatherName(e.target.value)}
             />
@@ -151,7 +157,7 @@ const CreateBook = () => {
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={address}
               placeholder="Enter permanent address"
-              maxlength={80}
+              maxLength={80}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -164,7 +170,7 @@ const CreateBook = () => {
               className="border-2 border-grey-500 px-4 py-2 w-full"
               value={contactNumber}
               placeholder="03335806268"
-              maxlength={11}
+              maxLength={11}
               onChange={(e) => setContactNumber(e.target.value)}
             />
             <div className="my-4 ">
@@ -176,7 +182,7 @@ const CreateBook = () => {
                 className="border-2 border-grey-500 px-4 py-2 w-full"
                 value={email}
                 placeholder="example@gmail.com"
-                maxlength={30}
+                maxLength={30}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -187,7 +193,7 @@ const CreateBook = () => {
                 className="border-2 border-grey-500 px-4 py-2 w-full"
                 value={nicNumber}
                 placeholder="1710111122332"
-                maxlength={13}
+                maxLength={13}
                 onChange={(e) => setNicNumber(e.target.value)}
               />
             </div>
@@ -201,7 +207,29 @@ const CreateBook = () => {
               className="border-2 border-grey-500 px-4 py-2"
             />
           </div>
-          <button className="p-2 bg-sky-300 m-8" onClick={handleSaveBook}>
+
+          <div className="flex flex-col items-center justify-center w-full my-8">
+            <h1 className="text-2xl font-bold text-gray-500">
+              Membership Status
+            </h1>
+            <label
+              htmlFor="toggle"
+              className="flex items-center cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                id="toggle"
+                value={isChecked}
+                className="sr-only peer"
+                checked={isChecked} // Bind the checked state to the isChecked state
+                onChange={handleCheckboxChange} // Handle checkbox change event
+              />
+              <div className="block relative bg-red-900 w-16 h-9 p-1 rounded-full before:absolute before:bg-red-600 before:w-7 before:h-7 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1 peer-checked:before:left-8 peer-checked:before:bg-white"></div>
+            </label>
+            {/* Display the value of isChecked */}
+          </div>
+
+          <button className="p-2 bg-red-300 m-8" onClick={handleSaveBook}>
             Save
           </button>
         </div>

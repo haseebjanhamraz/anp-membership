@@ -34,7 +34,8 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
       !req.body.address ||
       !req.body.contactNumber ||
       !req.body.email ||
-      !req.body.nicNumber
+      !req.body.nicNumber ||
+      !req.body.status
     ) {
       return res.status(400).send({ message: "All fields are required" });
     }
@@ -49,6 +50,7 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
       contactNumber,
       email,
       nicNumber,
+      status,
     } = req.body;
     const imagePath = req.file ? req.file.path : "public/default.png"; // Use Multer-uploaded file path
 
@@ -62,6 +64,7 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
       contactNumber,
       email,
       nicNumber,
+      status,
       imagePath,
     });
 
@@ -86,7 +89,8 @@ router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
       !req.body.address ||
       !req.body.contactNumber ||
       !req.body.email ||
-      !req.body.nicNumber
+      !req.body.nicNumber ||
+      !req.body.status
     ) {
       return res.status(400).send({ message: "All fields are required" });
     }
@@ -101,6 +105,7 @@ router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
       contactNumber,
       email,
       nicNumber,
+      status,
     } = req.body;
     let imagePath = "";
 
@@ -128,6 +133,7 @@ router.put("/:id", verifyToken, upload.single("image"), async (req, res) => {
         contactNumber,
         email,
         nicNumber,
+        status,
         imagePath,
       },
       { new: true }
@@ -166,7 +172,7 @@ router.get("/:id", verifyToken, async (req, res) => {
     const { id } = req.params;
     const book = await Book.findById(id);
     if (!book) {
-      return res.status(404).json({ message: "Book not found" });
+      return res.status(404).json({ message: "Member not found" });
     }
     return res.status(200).json(book);
   } catch (error) {

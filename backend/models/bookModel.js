@@ -12,6 +12,7 @@ const booksSchema = mongoose.Schema(
     contactNumber: { type: Number, required: true },
     email: { type: String, required: true },
     nicNumber: { type: Number, required: true },
+    status: { type: String, required: true },
     imagePath: { type: String },
   },
   {

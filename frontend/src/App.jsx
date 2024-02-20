@@ -7,6 +7,7 @@ import EditBook from "./pages/EditBook";
 import DeleteBook from "./pages/DeleteBook";
 import RegistrationPage from "./pages/RegistrationPage"; // Import the RegistrationPage component
 import Login from "./pages/LoginForm";
+import About from "./pages/PublicPages/About";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route element={<ShowBook />} path="/books/details/:id" />
         </Route>
         <Route element={<Home />} path="/" exact />
+        <Route element={<About />} path="/about" exact />
         <Route element={<Login />} path="/login" />
         <Route element={<RegistrationPage />} path="/register" />
       </Routes>

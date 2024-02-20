@@ -5,7 +5,7 @@ import AuthCheck from "../../utils/AuthCheck";
 import Logout from "../../utils/Logout";
 const navigation = [
   { name: "Home", href: "/", current: true },
-  { name: "Add New", href: "/books/create" },
+  { name: "About", href: "/about" },
 ];
 
 function classNames(...classes) {
