@@ -26,7 +26,7 @@ const RegistrationForm = () => {
     // Check if the email domain is 'anp.com.pk'
     if (emailDomain !== "anp.com.pk") {
       enqueueSnackbar("Only authorized personals are allowed to register", {
-        variant: "warning",
+        variant: "error",
       });
       // alert("Only emails from anp.com.pk domain are allowed for signup.");
       return; // Stop further execution
@@ -41,6 +41,9 @@ const RegistrationForm = () => {
       navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error.response.data);
+      enqueueSnackbar(error.response.data, {
+        variant: "error",
+      });
     }
   };
 
@@ -88,6 +91,16 @@ const RegistrationForm = () => {
             >
               Register
             </button>
+            <h4 className="p-2 italic">
+              Already core system member?
+              <a
+                href="/login"
+                className="text-brown-800 font-bold hover:text-red-600"
+              >
+                {" "}
+                Sign in
+              </a>
+            </h4>
           </div>
         </form>
       </div>

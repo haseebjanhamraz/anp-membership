@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AuthCheck from "../../utils/AuthCheck";
 import Logout from "../../utils/Logout";
 const navigation = [
-  { name: "Home", href: "/", current: true },
+  { name: "Home", href: "/" },
   { name: "About", href: "/about" },
 ];
 
