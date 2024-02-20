@@ -45,51 +45,53 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="bg-yellow-100 ring-offset-purple-950 shadow-lg rounded-md px-6 py-8 m-20">
-      <form onSubmit={handleSubmit}>
-        <div className="p-4">
-          <input
-            className="rounded-3xl"
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="p-4">
-          <input
-            className="rounded-3xl"
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="p-4">
-          <input
-            className="rounded-3xl"
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="p-4">
-          <button
-            type="submit"
-            className="bg-green-900 text-xl font-bold px-4 py-2 rounded-xl text-white"
-          >
-            Register
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="bg-yellow-100 ring-offset-purple-950 shadow-lg rounded-md px-6 py-8 m-20">
+        <form onSubmit={handleSubmit}>
+          <div className="p-4">
+            <input
+              className="rounded-3xl"
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <input
+              className="rounded-3xl"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <input
+              className="rounded-3xl"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <button
+              type="submit"
+              className="bg-green-900 text-xl font-bold px-4 py-2 rounded-xl text-white"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 
