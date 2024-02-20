@@ -11,7 +11,7 @@ const BooksCard = ({ books }) => {
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5">
         {books.slice(0, displayCount).map(
           (
             item // Use slice to limit the displayed items based on the displayCount state

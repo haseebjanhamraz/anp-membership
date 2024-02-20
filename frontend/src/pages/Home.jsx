@@ -63,7 +63,9 @@ const Home = () => {
         ) : showType === "table" ? (
           <BooksTable books={books} />
         ) : (
-          <BooksCard books={books} />
+          <div className="bg-gray-100 p-40 m-11 xsm:m-1 xsm:p-2 sm:p-1 sm:m-1 md:m-1 md:p-1 lg:p-4 lg:m-1 xl:p-5 xl:m-1 2xl:p-10">
+            <BooksCard books={books} />
+          </div>
         )}
         ,
       </div>
