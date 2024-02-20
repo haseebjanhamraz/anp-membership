@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSnackbar } from "notistack";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -18,6 +20,18 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { email } = formData;
+    const emailDomain = email.split("@")[1];
+
+    // Check if the email domain is 'anp.com.pk'
+    if (emailDomain !== "anp.com.pk") {
+      enqueueSnackbar("Only authorized personals are allowed to register", {
+        variant: "warning",
+      });
+      // alert("Only emails from anp.com.pk domain are allowed for signup.");
+      return; // Stop further execution
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/register",
