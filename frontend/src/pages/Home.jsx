@@ -14,7 +14,7 @@ const Home = () => {
   const [books, setBooks] = useState([]);
   const districts = [...new Set(books.map((book) => book.district))];
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState("card");
+  const [showType, setShowType] = useState("table");
 
   // Get all books from the server.
   useEffect(() => {

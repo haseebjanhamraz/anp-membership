@@ -86,7 +86,7 @@ const BooksTable = ({ books }) => {
             }`}
           >
             <span className="font-bold text-red-500 uppercase">
-              {selectedDistrict}{" "}
+              {selectedDistrict} {searchQuery}{" "}
             </span>{" "}
             has total of{" "}
             <span className="font-bold">{filteredItems.length}</span>{" "}

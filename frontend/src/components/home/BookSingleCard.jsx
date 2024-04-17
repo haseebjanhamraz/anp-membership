@@ -3,7 +3,7 @@ import { BiUserCircle, BiShow } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
-import { IoLanguage } from "react-icons/io5";
+
 import { IoQrCodeOutline } from "react-icons/io5";
 import { FaLandmark } from "react-icons/fa";
 import AuthCheck from "../../utils/AuthCheck";
@@ -16,7 +16,7 @@ const BookSingleCard = ({ book }) => {
   return (
     <div
       key={book._id}
-      className="content-center flex flex-col w-auto border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
+      className="content-center justify-between space-y-2 flex flex-col w-auto border-2 rounded-lg px-2 py-2 m-2 relative hover:shadow-xl"
     >
       <img
         src={
@@ -24,25 +24,26 @@ const BookSingleCard = ({ book }) => {
             ? `http://localhost:8080/${book.imagePath}`
             : "placeholder.webp"
         }
-        className="w-auto h-[300px] rounded-lg "
+        className="w-auto h-[150px] rounded-lg "
         alt=""
       />
-      <div className=" bg-yellow-200 w-30 text-center rounded-lg m-4 p-2">
-        <h1 className="text-red-600 px-2 text-2xl font-bold uppercase">
-          {book.name}
-        </h1>
+      <h1 className="text-black-600 text-2xl font-bold uppercase">
+        {book.name}
+      </h1>
+      <div className="flex justify-start items-center gap-x-2 ">
+        <IoQrCodeOutline className="text-gray-500 text-2xl " />
+        <h2 className="my-1 text-gray-500 text-sm">{book._id}</h2>
       </div>
       <div className="flex justify-start items-center gap-x-2 ">
-        <IoQrCodeOutline className="text-red-300 text-2xl " />
-        <h2 className="my-1 ">{book._id}</h2>
+        <FaLandmark className="text-gray-500 text-2xl " />
+        <h2 className="my-1 font-bold text-gray-600">{book.district}</h2>
       </div>
-      <div className="flex justify-start items-center gap-x-2 ">
-        <FaLandmark className="text-red-300 text-2xl " />
-        <h2 className="my-1 ">{book.district}</h2>
-      </div>
-      <h2 className=" text-white uppercase absoulte top-1 right-2 px-4 py-1 w-auto mt-3 bg-red-600 rounded-lg">
-        Serial# {book.serial}
-      </h2>
+
+      {AuthCheck() ? (
+        <h2 className=" text-white uppercase absoulte top-1 right-2 px-4 py-1 w-auto mt-3 bg-red-600 rounded-lg">
+          Serial# {book.serial}
+        </h2>
+      ) : null}
 
       {AuthCheck() ? (
         <>
