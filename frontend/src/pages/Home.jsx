@@ -16,6 +16,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState("card");
 
+  // Get all books from the server.
   useEffect(() => {
     setLoading(true);
     axios
@@ -30,7 +31,6 @@ const Home = () => {
       });
   }, []);
 
-  // Get all books from the server.
   return (
     <>
       <Nav />

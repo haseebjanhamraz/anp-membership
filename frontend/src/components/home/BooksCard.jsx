@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BookSingleCard from "./BookSingleCard";
-import SearchInput from "../SearchInput";
 
 const BooksCard = ({ books }) => {
   const [displayCount, setDisplayCount] = useState(12); // State to track the number of items to display

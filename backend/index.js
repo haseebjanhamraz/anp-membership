@@ -1,17 +1,14 @@
-import dotenv from "dotenv";
 import express from "express";
-import { PORT, mongoDBURL } from "./config.js";
 import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
 import authRoute from "./routes/authRoutes.js";
 
-dotenv.config();
 const app = express();
 app.use(express.json());
 app.use("/public", express.static("public"));
-
 app.use("/uploads", express.static("uploads"));
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -20,20 +17,19 @@ app.use(
   })
 );
 
-app.use(cors());
 app.get("/", (req, res) => {
-  return res.status(200);
+  return res.status(200).send("Hello, World!");
 });
 
 app.use("/books", booksRoute);
 app.use("/auth", authRoute);
 
 mongoose
-  .connect(mongoDBURL)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Database Connected!!!");
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on port ${process.env.PORT}`);
     });
   })
   .catch((error) => {
