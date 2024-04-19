@@ -25,7 +25,6 @@ const LoginForm = () => {
       );
       const { token } = response.data;
       localStorage.setItem("token", token);
-      console.log("Login successful:", response.data);
       const { from } = location.state || { from: { pathname: "/" } };
       navigate(from);
     } catch (error) {

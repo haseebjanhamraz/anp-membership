@@ -25,7 +25,6 @@ const upload = multer({ storage });
 
 // POST Route for creating a new book with image upload
 router.post("/", verifyToken, upload.single("image"), async (req, res) => {
-  console.log("Request User:", req.user); // Check if req.user contains user information
   try {
     if (
       !req.body.serial ||
@@ -43,7 +42,6 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
 
     // Extract user ID from req.user.id
     const userId = req.user.userId;
-    console.log("Here is user ID", userId);
 
     // Extract book data from request body
     const {

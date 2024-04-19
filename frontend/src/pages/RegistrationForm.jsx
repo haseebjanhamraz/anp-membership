@@ -37,7 +37,6 @@ const RegistrationForm = () => {
         "http://localhost:8080/auth/register",
         formData
       );
-      console.log("Registration successful:", response.data);
       navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error.response.data);
