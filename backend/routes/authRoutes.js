@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password" });
     }
     const token = jwt.sign(
-      { username: user.username },
+      { userId: user._id, username: user.username }, // Include the user ID in the token payload
       process.env.JWT_SECRET || "my-secret"
     );
     res.json({ token });
@@ -43,6 +43,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 router.post("/logout", (req, res) => {
   // Clear the token from the client-side storage (e.g., local storage or cookies)
   // This could also involve revoking the token from a blacklist or database, if needed

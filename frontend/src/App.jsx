@@ -9,6 +9,7 @@ import RegistrationPage from "./pages/RegistrationPage"; // Import the Registrat
 import Login from "./pages/LoginForm";
 import About from "./pages/PublicPages/About";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import AllEntries from "./pages/AllEntries";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route element={<EditBook />} path="/books/edit/:id" />
           <Route element={<DeleteBook />} path="/books/delete/:id" />
           <Route element={<ShowBook />} path="/books/details/:id" />
+          <Route element={<AllEntries />} path="/all-members" />
         </Route>
         <Route element={<Home />} path="/" exact />
         <Route element={<About />} path="/about" exact />

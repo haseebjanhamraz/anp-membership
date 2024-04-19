@@ -89,7 +89,7 @@ const BooksTable = ({ books }) => {
               {selectedDistrict} {searchQuery}{" "}
             </span>{" "}
             has total of{" "}
-            <span className="font-bold">{filteredItems.length}</span>{" "}
+            <span className="font-bold">{filteredItems.length} </span>{" "}
             memberships
           </h1>
         </div>
@@ -97,18 +97,18 @@ const BooksTable = ({ books }) => {
         <table className="w-full border-separate border-spacing-2">
           <thead>
             <tr>
-              <th className="w-10 border border-slate-600 rounded-md">No</th>
-              <th className="w-10 border border-slate-600 rounded-md">Ref#</th>
-              <th className="border border-slate-600 rounded-md">Name</th>
-              <th className="border border-slate-600 rounded-md">
+              <th className="w-10 border border-slate-300 rounded-md">No</th>
+              <th className="w-10 border border-slate-300 rounded-md">Ref#</th>
+              <th className="border border-slate-300 rounded-md">Name</th>
+              <th className="border border-slate-300 rounded-md">
                 Father Name
               </th>
-              <th className="border border-slate-600 rounded-md">CNIC#</th>
-              <th className="w-10 border border-slate-600 rounded-md">
+              <th className="border border-slate-300 rounded-md">CNIC#</th>
+              <th className="w-10 border border-slate-300 rounded-md">
                 District
               </th>
-              <th className="border border-slate-600 rounded-md">Address</th>
-              <th className="border border-slate-600 rounded-md max-md:hidden">
+              <th className="border border-slate-300 rounded-md">Address</th>
+              <th className="border border-slate-300 rounded-md max-md:hidden">
                 Contact#
               </th>
               <th className="w-10">Operations</th>

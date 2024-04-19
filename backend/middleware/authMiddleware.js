@@ -1,5 +1,19 @@
-// middleware/authMiddleware.js
 import jwt from "jsonwebtoken";
+
+// Function to generate JWT token with user ID included in the payload
+const generateToken = (userId) => {
+  const payload = {
+    userId: userId, // Include the user ID in the payload
+    // Add other necessary fields to the payload if needed
+  };
+
+  // Sign the token with your JWT secret key
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: "1h", // Set token expiration time if needed
+  });
+
+  return token;
+};
 
 export const verifyToken = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -8,6 +22,7 @@ export const verifyToken = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("Decoded Token:", decoded); // Log the decoded token payload
     req.user = decoded;
     next();
   } catch (error) {
@@ -18,3 +33,5 @@ export const verifyToken = (req, res, next) => {
     res.status(400).json({ error: "Invalid token" });
   }
 };
+
+export default generateToken; // Export the generateToken function

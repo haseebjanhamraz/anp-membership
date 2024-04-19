@@ -1,8 +1,9 @@
 //models/bookModel.js
 
 import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
-const booksSchema = mongoose.Schema(
+const booksSchema = new Schema(
   {
     serial: { type: Number, required: true },
     name: { type: String, required: true },
@@ -14,6 +15,10 @@ const booksSchema = mongoose.Schema(
     nicNumber: { type: Number, required: true },
     status: { type: String, required: true },
     imagePath: { type: String },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,

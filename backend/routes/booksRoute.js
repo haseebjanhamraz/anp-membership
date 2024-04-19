@@ -25,6 +25,7 @@ const upload = multer({ storage });
 
 // POST Route for creating a new book with image upload
 router.post("/", verifyToken, upload.single("image"), async (req, res) => {
+  console.log("Request User:", req.user); // Check if req.user contains user information
   try {
     if (
       !req.body.serial ||
@@ -40,6 +41,10 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
       return res.status(400).send({ message: "All fields are required" });
     }
 
+    // Extract user ID from req.user.id
+    const userId = req.user.userId;
+    console.log("Here is user ID", userId);
+
     // Extract book data from request body
     const {
       serial,
@@ -54,7 +59,7 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
     } = req.body;
     const imagePath = req.file ? req.file.path : "public/default.png"; // Use Multer-uploaded file path
 
-    // Create new book instance
+    // Create new book instance with createdBy field set to the user ID
     const newBook = new Book({
       serial,
       name,
@@ -66,6 +71,7 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
       nicNumber,
       status,
       imagePath,
+      createdBy: userId, // Associate the book with the user who created it
     });
 
     // Save the book to the database
@@ -73,7 +79,7 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
 
     return res.status(201).send(newBook);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
     res.status(500).send({ message: error.message });
   }
 });
