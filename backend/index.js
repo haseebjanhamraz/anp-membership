@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
 import authRoute from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.use("/books", booksRoute);
 app.use("/auth", authRoute);
+app.use("/user", userRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URI)
