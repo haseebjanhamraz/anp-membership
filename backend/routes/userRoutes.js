@@ -1,3 +1,5 @@
+//routes/userRoutes
+
 import express from "express";
 const router = express.Router();
 import { User } from "../models/userModel.js";
@@ -10,7 +12,13 @@ router.get("/:id", verifyToken, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    return res.status(200).json(user.username);
+    let data = {
+      ID: user.id,
+      FullName: user.fullname,
+      Username: user.username,
+      Email: user.email,
+    };
+    return res.status(200).json(data);
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });

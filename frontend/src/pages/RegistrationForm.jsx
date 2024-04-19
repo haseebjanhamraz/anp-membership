@@ -9,6 +9,7 @@ const RegistrationForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [formData, setFormData] = useState({
     username: "",
+    fullname: "",
     email: "",
     password: "",
   });
@@ -57,6 +58,17 @@ const RegistrationForm = () => {
               name="username"
               placeholder="Username"
               value={formData.username}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="p-4">
+            <input
+              className="rounded-3xl"
+              type="text"
+              name="fullname"
+              placeholder="Full Name"
+              value={formData.fullname}
               onChange={handleChange}
               required
             />

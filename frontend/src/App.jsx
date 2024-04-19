@@ -10,6 +10,7 @@ import Login from "./pages/LoginForm";
 import About from "./pages/PublicPages/About";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import AllEntries from "./pages/AllEntries";
+import UserProfile from "./components/User/UserProfile";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route element={<DeleteBook />} path="/books/delete/:id" />
           <Route element={<ShowBook />} path="/books/details/:id" />
           <Route element={<AllEntries />} path="/all-members" />
+          <Route element={<UserProfile />} path="/profile" />
         </Route>
         <Route element={<Home />} path="/" exact />
         <Route element={<About />} path="/about" exact />

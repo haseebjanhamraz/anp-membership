@@ -6,7 +6,6 @@ import Logout from "../../utils/Logout";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "All Members", href: "/all-members" },
 ];
 
 function classNames(...classes) {
@@ -67,8 +66,8 @@ export default function Example() {
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://cdn-icons-png.flaticon.com/512/4042/4042356.png"
-                          alt="profile-pic"
+                          src="placeholder.webp"
+                          alt=""
                         />
                       </Menu.Button>
                     </div>
@@ -82,6 +81,19 @@ export default function Example() {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="/profile"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Your Profile
+                            </a>
+                          )}
+                        </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <a
