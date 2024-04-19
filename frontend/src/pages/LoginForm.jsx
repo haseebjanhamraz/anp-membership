@@ -1,8 +1,9 @@
-// LoginForm.jsx
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import Nav from "../components/partials/Nav";
+import SuccessMessage from "../components/SuccessMessage";
+import ErrorMessage from "../components/ErrorMessage";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -11,11 +12,14 @@ const LoginForm = () => {
     username: "",
     password: "",
   });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,9 +31,12 @@ const LoginForm = () => {
       localStorage.setItem("token", token);
       const { from } = location.state || { from: { pathname: "/" } };
       navigate(from);
+      setSuccess("Login successful!");
+      setError("");
     } catch (error) {
       console.error("Login failed:", error.response.data);
-      // Show error message to the user
+      setError("Invalid username or password");
+      setSuccess("");
     }
   };
 
@@ -113,6 +120,9 @@ const LoginForm = () => {
               </button>
             </div>
           </form>
+
+          {error && <ErrorMessage message={error} />}
+          {success && <SuccessMessage message={success} />}
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}

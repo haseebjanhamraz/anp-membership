@@ -107,6 +107,10 @@ const ShowBook = () => {
             <div className="flex flex-2 p-8">
               <div className="italic text-gray-500">
                 <h3 className="text-lg">Entry Details</h3>
+                <p>
+                  Created By:{" "}
+                  <span className="text-black font-bold">{book.createdBy}</span>{" "}
+                </p>
                 <p>Created At:{book.createdAt}</p>
                 <p>Updated At:{book.updatedAt}</p>
               </div>
