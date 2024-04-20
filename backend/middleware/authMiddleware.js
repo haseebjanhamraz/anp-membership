@@ -1,3 +1,5 @@
+//Auth Middleware
+
 import jwt from "jsonwebtoken";
 
 // Function to generate JWT token with user ID included in the payload
