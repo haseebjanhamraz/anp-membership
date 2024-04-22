@@ -4,15 +4,21 @@ import booksRoute from "./routes/booksRoute.js";
 import cors from "cors";
 import authRoute from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
+
 app.use(express.json());
-app.use("/public", express.static("public"));
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const buildpath = path.join(__dirname, "../frontend/dist");
+app.use(express.static(buildpath));
 app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true,
@@ -26,6 +32,10 @@ app.get("/", (req, res) => {
 app.use("/books", booksRoute);
 app.use("/auth", authRoute);
 app.use("/user", userRoutes);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(buildpath, "index.html"));
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)
