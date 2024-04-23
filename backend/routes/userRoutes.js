@@ -3,6 +3,7 @@
 import express from "express";
 const router = express.Router();
 import { User } from "../models/userModel.js";
+import { Book } from "../models/bookModel.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
 
 router.get("/:id", verifyToken, async (req, res) => {
