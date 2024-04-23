@@ -15,6 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const buildpath = path.join(__dirname, "../frontend/dist");
 app.use(express.static(buildpath));
 app.use("/uploads", express.static("uploads"));
+app.use("/public", express.static("public"));
 
 app.use(
   cors({
