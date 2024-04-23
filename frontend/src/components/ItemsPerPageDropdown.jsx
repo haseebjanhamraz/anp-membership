@@ -7,7 +7,7 @@ const ItemsPerPageDropdown = ({ value, onChange }) => {
       <select
         value={value}
         onChange={onChange}
-        className="border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
+        className="border border-gray-300 w-full rounded-md px-3 py-1 focus:outline-none focus:border-blue-500"
       >
         <option value={10}>10 per page</option>
         <option value={30}>30 per page</option>

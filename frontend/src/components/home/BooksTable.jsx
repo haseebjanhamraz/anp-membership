@@ -66,12 +66,14 @@ const BooksTable = ({ books }) => {
     <>
       <div className="container md:container md:mx-auto">
         <div className="flex justify-around align-middle mt-4">
-          <div>
-            <h4>Search by name or father name</h4>
+          <div className="flex flex-col items-center">
+            <h4 className="text-gray-400">
+              Search By Name / Father Name Or Address
+            </h4>
             <SearchInput value={searchQuery} onChange={handleSearchChange} />
           </div>
           <div>
-            <h4>Search by district</h4>
+            <h4 className="text-gray-400">Search by district</h4>
             <DistrictDropdown
               districts={districts}
               value={selectedDistrict}
