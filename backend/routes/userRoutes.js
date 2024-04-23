@@ -13,11 +13,14 @@ router.get("/:id", verifyToken, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+    const entries = await Book.find({ createdBy: user.id });
     let data = {
       ID: user.id,
       FullName: user.fullname,
       Username: user.username,
       Email: user.email,
+      TotalEntries: entries.length,
+      Entries: entries,
     };
     return res.status(200).json(data);
   } catch (error) {
@@ -25,4 +28,5 @@ router.get("/:id", verifyToken, async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
 export default router;

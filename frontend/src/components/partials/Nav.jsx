@@ -35,7 +35,7 @@ export default function Navigation() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:justify-start">
                 <div className="flex flex-shrink-0 space-x-4 items-center">
-                  <img src="../public/anp-logo.png" width={"50px"} />
+                  <img src="/anp-logo.png" width={"50px"} />
                   <h4 className="text-white text-lg hidden lg:block md:block">
                     ANP Membership Database 1.0
                   </h4>

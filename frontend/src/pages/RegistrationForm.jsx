@@ -41,7 +41,7 @@ const RegistrationForm = () => {
       navigate("/login");
     } catch (error) {
       console.error("Registration failed:", error.response.data);
-      enqueueSnackbar(error.response.data, {
+      enqueueSnackbar("Error: General Duplication Error Code: DUP:EMAIL", {
         variant: "error",
       });
     }
