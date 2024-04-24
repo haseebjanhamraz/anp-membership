@@ -22,7 +22,7 @@ const CreateBook = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const handleCheckboxChange = () => {
-    setIsChecked(!isChecked); // Toggle the value of isChecked when the checkbox is clicked
+    setIsChecked(!isChecked);
   };
 
   const handleImageChange = (event) => {

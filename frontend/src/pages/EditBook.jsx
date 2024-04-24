@@ -17,10 +17,15 @@ const EditBook = () => {
   const [nicNumber, setNicNumber] = useState("");
   const [imagePath, setImagePath] = useState(null);
   const [status, setStatus] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -226,6 +231,26 @@ const EditBook = () => {
                 className="border-2 border-grey-500 px-4 py-2 w-full"
                 onChange={(e) => setImagePath(e.target.files[0])} // Update imagePath with selected file
               />
+            </div>
+            <div className="flex flex-col items-center justify-center w-full my-8">
+              <h1 className="text-2xl font-bold text-gray-500">
+                Membership Status
+              </h1>
+              <label
+                htmlFor="toggle"
+                className="flex items-center cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  id="toggle"
+                  value={isChecked}
+                  className="sr-only peer"
+                  checked={isChecked} // Bind the checked state to the isChecked state
+                  onChange={handleCheckboxChange} // Handle checkbox change event
+                />
+                <div className="block relative bg-red-900 w-16 h-9 p-1 rounded-full before:absolute before:bg-red-600 before:w-7 before:h-7 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1 peer-checked:before:left-8 peer-checked:before:bg-white"></div>
+              </label>
+              {/* Display the value of isChecked */}
             </div>
             <button className="p-2 bg-sky-300 m-8" onClick={handleEditBook}>
               Save
