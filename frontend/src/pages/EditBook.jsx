@@ -3,7 +3,7 @@ import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { enqueueSnackbar, useSnackbar } from "notistack";
+import { useSnackbar } from "notistack";
 import Nav from "../components/partials/Nav";
 
 const EditBook = () => {
@@ -15,7 +15,8 @@ const EditBook = () => {
   const [contactNumber, setContactNumber] = useState("");
   const [email, setEmail] = useState("");
   const [nicNumber, setNicNumber] = useState("");
-  const [imagePath, setImagePath] = useState(null); // Change imagePath initial state to null
+  const [imagePath, setImagePath] = useState(null);
+  const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -26,30 +27,44 @@ const EditBook = () => {
     axios
       .get(`http://localhost:8080/books/${id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
-        setSerial(res.data.serial);
-        setName(res.data.name);
-        setFatherName(res.data.fatherName);
-        setDistrict(res.data.district);
-        setAddress(res.data.address);
-        setContactNumber(res.data.contactNumber);
-        setEmail(res.data.email);
-        setNicNumber(res.data.nicNumber);
+        const {
+          serial,
+          name,
+          fatherName,
+          district,
+          address,
+          contactNumber,
+          email,
+          nicNumber,
+          status,
+        } = res.data;
+        setSerial(serial);
+        setName(name);
+        setFatherName(fatherName);
+        setDistrict(district);
+        setAddress(address);
+        setContactNumber(contactNumber);
+        setEmail(email);
+        setNicNumber(nicNumber);
+        setStatus(status);
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setLoading(false);
-        alert("An error happened, Please check the console");
+        enqueueSnackbar("An error occurred. Please check the console.", {
+          variant: "error",
+        });
       });
-  }, []);
+  }, [id, enqueueSnackbar]);
 
   const handleEditBook = () => {
     setLoading(true);
-    const data = new FormData(); // Create a FormData object
+    const data = new FormData();
     data.append("serial", serial);
     data.append("name", name);
     data.append("fatherName", fatherName);
@@ -58,12 +73,15 @@ const EditBook = () => {
     data.append("contactNumber", contactNumber);
     data.append("email", email);
     data.append("nicNumber", nicNumber);
-    data.append("image", imagePath); // Append the selected file to FormData
+    data.append("status", status);
+    if (imagePath) {
+      data.append("image", imagePath);
+    }
 
     axios
       .put(`http://localhost:8080/books/${id}`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include the token in the request headers
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then(() => {
@@ -72,9 +90,9 @@ const EditBook = () => {
         navigate("/");
       })
       .catch((err) => {
-        setLoading(false);
         console.error(err);
-        enqueueSnackbar("Error", { variant: "error" });
+        setLoading(false);
+        enqueueSnackbar("Error editing member", { variant: "error" });
       });
   };
 

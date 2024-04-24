@@ -74,7 +74,6 @@ router.post("/", verifyToken, upload.single("image"), async (req, res) => {
 
     // Save the book to the database
     await newBook.save();
-
     return res.status(201).send(newBook);
   } catch (error) {
     console.error(error.message);

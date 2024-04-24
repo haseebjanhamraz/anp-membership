@@ -83,7 +83,7 @@ const UserProfile = () => {
               {userData && (
                 <div className="w-full h-full flex flex-col justify-center items-center">
                   <br />
-                  <h4 className="text-slate-400 font-serif text-3xl uppercase">
+                  <h4 className="text-slate-400 text-xl uppercase">
                     Last Entries
                   </h4>
                   <br />
