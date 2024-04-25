@@ -15,16 +15,17 @@ const BookModal = ({ book, onClose }) => {
     >
       <div
         onClick={(event) => event.stopPropagation()}
-        className="w-[600px] max-w-full h-[800px] bg-white rounded-xl p-4 flex flex-col relative "
+        className="w-auto max-w-full h-auto bg-white rounded-xl p-4 flex flex-col relative "
       >
         <AiOutlineClose
           className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer "
           onClick={onClose}
         />
+
         <img
           src={`http://localhost:8080/${book.imagePath}`}
           alt={book.name}
-          className="w-auto h-[500px]"
+          width={200}
         />
         <h1 className="text-3xl mt-3 mb-1 font-bold text-bold  text-red-400">
           {book.name} s/o {book.fatherName}

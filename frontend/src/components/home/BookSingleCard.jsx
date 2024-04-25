@@ -3,6 +3,7 @@ import { BiUserCircle, BiShow } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
+import { FaCircleDot } from "react-icons/fa6";
 
 import { IoQrCodeOutline } from "react-icons/io5";
 import { FaLandmark } from "react-icons/fa";
@@ -27,9 +28,26 @@ const BookSingleCard = ({ book }) => {
         className="w-auto h-[150px] rounded-lg "
         alt=""
       />
-      <h1 className="text-black-600 text-2xl font-bold uppercase">
+      <h1 className="text-rose-700  text-2xl font-bold uppercase">
         {book.name}
       </h1>
+
+      {book.status === "true" ? (
+        <p className="text-gray-400 text-sm">
+          Membership Status:{" "}
+          <span className="w-fit inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+            Active
+          </span>
+        </p>
+      ) : (
+        <p className="text-gray-400 text-sm">
+          Membership Status:{" "}
+          <span className="w-fit inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+            Inactive
+          </span>
+        </p>
+      )}
+
       <div className="flex justify-start items-center gap-x-2 ">
         <IoQrCodeOutline className="text-gray-500 text-2xl " />
         <h2 className="my-1 text-gray-500 text-sm">{book._id}</h2>

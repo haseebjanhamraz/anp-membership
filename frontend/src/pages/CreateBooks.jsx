@@ -16,7 +16,7 @@ const CreateBook = () => {
   const [email, setEmail] = useState("");
   const [nicNumber, setNicNumber] = useState("");
   const [image, setImage] = useState(null); // Add state for the image
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
