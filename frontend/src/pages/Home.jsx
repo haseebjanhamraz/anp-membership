@@ -9,6 +9,7 @@ import BooksTable from "../components/home/BooksTable";
 import Nav from "../components/partials/Nav";
 import AuthCheck from "../utils/AuthCheck";
 import MembersCount from "../components/MembersCount";
+import NoEntries from "../components/home/NoEntries";
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -64,10 +65,9 @@ const Home = () => {
           <BooksTable books={books} />
         ) : (
           <div className="bg-gray-100 p-40 m-11 xsm:m-1 xsm:p-2 sm:p-1 sm:m-1 md:m-1 md:p-1 lg:p-4 lg:m-1 xl:p-5 xl:m-1 2xl:p-10">
-            <BooksCard books={books} />
+            {books.length > 0 ? <BooksCard books={books} /> : <NoEntries />}
           </div>
         )}
-        ,
       </div>
     </>
   );
